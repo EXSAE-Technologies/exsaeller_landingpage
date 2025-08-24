@@ -1,4 +1,6 @@
-import React from 'react';
+import logo from './assets/logo.png';
+import WindowsDownloadComponent from './windows_download_component';
+import AndroidDownloadComponent from './android_download_component';
 
 const App = () => {
   return (
@@ -7,7 +9,10 @@ const App = () => {
       <nav className="bg-white shadow-md">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-gray-800">Exsaeller POS</div>
+            <div className="flex gap-4 items-center text-xl font-bold text-gray-800">
+              <img src={logo} alt='Logo' className="h-8 w-auto" />
+              <span className="ml-2">Exsaeller POS</span>
+            </div>
             <div className="flex items-center">
               <a href="mailto:exsaetech@gmail.com" className="text-gray-600 hover:text-gray-800">
                 Contact Us
@@ -27,18 +32,8 @@ const App = () => {
             Manage your inventory, track sales, and empower your employees with Exsaeller.
           </p>
           <div className="mt-8 flex justify-center space-x-4">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700"
-            >
-              Download for Windows
-            </a>
-            <a
-              href="#"
-              className="rounded-md bg-gray-800 px-6 py-3 text-white hover:bg-gray-900"
-            >
-              Download for Android
-            </a>
+            <WindowsDownloadComponent />
+            <AndroidDownloadComponent />
           </div>
         </div>
       </header>
@@ -127,18 +122,8 @@ const App = () => {
           <h2 className="text-3xl font-bold text-gray-800">Ready to take control of your business?</h2>
           <p className="mt-4 text-lg text-gray-600">Download Exsaeller today!</p>
           <div className="mt-8 flex justify-center space-x-4">
-            <a
-              href="#"
-              className="rounded-md bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700"
-            >
-              Download for Windows
-            </a>
-            <a
-              href="#"
-              className="rounded-md bg-gray-800 px-6 py-3 text-white hover:bg-gray-900"
-            >
-              Download for Android
-            </a>
+            <WindowsDownloadComponent />
+            <AndroidDownloadComponent />
           </div>
         </div>
       </section>

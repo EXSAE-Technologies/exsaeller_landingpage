@@ -1,0 +1,12 @@
+import androidLogo from './assets/android.png';
+export default function AndroidDownloadComponent() {
+  return (                
+    <a
+      href="#"
+      className="rounded-md bg-indigo-600 px-6 py-3 text-white hover:bg-indigo-700 flex items-center gap-2"
+    >
+      <img src={androidLogo} className='h-8 w-auto' alt='microsoft' />
+      <span>Download for Android</span>
+    </a>
+  );
+}

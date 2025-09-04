@@ -1,8 +1,29 @@
 import logo from './assets/logo.png';
-import WindowsDownloadComponent from './windows_download_component';
-import AndroidDownloadComponent from './android_download_component';
+import GithubSdk from './github_sdk';
+import { useEffect, useState } from 'react';
+import ReleaseComponent from './release_component';
 
 const App = () => {
+  const githubSdk = new GithubSdk();
+
+  const [releases, setReleases] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReleases = async () => {
+      try {
+        const releases = await githubSdk.getReleases();
+        setReleases(releases);
+      } catch (error) {
+        console.error("Error fetching releases:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReleases();
+  }, []);
+
   return (
     <div className="bg-gray-100">
       {/* Navigation */}
@@ -31,9 +52,14 @@ const App = () => {
           <p className="mt-4 text-lg text-gray-600">
             Manage your inventory, track sales, and empower your employees with Exsaeller.
           </p>
-          <div className="mt-8 flex justify-center space-x-4">
-            <WindowsDownloadComponent />
-            <AndroidDownloadComponent />
+          <div className="mt-8">
+            {loading ? (
+              <p>Loading latest release...</p>
+            ) : releases.length > 0 ? (
+              <ReleaseComponent release={releases[0]} />
+            ) : (
+              <p>No releases found.</p>
+            )}
           </div>
         </div>
       </header>
@@ -121,9 +147,10 @@ const App = () => {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-800">Ready to take control of your business?</h2>
           <p className="mt-4 text-lg text-gray-600">Download Exsaeller today!</p>
-          <div className="mt-8 flex justify-center space-x-4">
-            <WindowsDownloadComponent />
-            <AndroidDownloadComponent />
+          <div className="mt-8">
+            {releases.map((release) => (
+              <ReleaseComponent key={release.id} release={release} />
+            ))}
           </div>
         </div>
       </section>
